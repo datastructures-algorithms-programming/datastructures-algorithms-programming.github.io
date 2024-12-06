@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse an Array - Go Program</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f6d365, #fda085);
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px;
+            font-size: 2.5em;
+            color: #4CAF50;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        pre {
+            background: #1e1e1e;
+            color: #dcdcdc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            overflow-x: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+        .string {
+            color: #ce9178;
+        }
+        .comment {
+            color: #6a9955;
+            font-style: italic;
+        }
+        .builtin {
+            color: #dcdcaa;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reverse an Array in Go</h1>
+
+    <pre>
+<span class="comment">// Go program to reverse an array</span>
+<span class="keyword">package</span> main
+
+<span class="keyword">import</span> (
+    <span class="string">"fmt"</span>
+)
+
+<span class="comment">// reverseArray reverses an array in place</span>
+<span class="keyword">func</span> reverseArray(arr []<span class="keyword">int</span>) {
+    start, end := 0, len(arr)-1
+    <span class="keyword">for</span> start < end {
+        arr[start], arr[end] = arr[end], arr[start]
+        start++
+        end--
+    }
+}
+
+<span class="comment">// printArray prints the array elements</span>
+<span class="keyword">func</span> printArray(arr []<span class="keyword">int</span>) {
+    <span class="keyword">for</span> _, num := <span class="keyword">range</span> arr {
+        fmt.Print(num, <span class="string">" "</span>)
+    }
+    fmt.Println()
+}
+
+<span class="keyword">func</span> main() {
+    arr := []<span class="keyword">int</span>{1, 2, 3, 4, 5}
+    fmt.Println(<span class="string">"Original Array:"</span>)
+    printArray(arr)
+
+    reverseArray(arr)
+
+    fmt.Println(<span class="string">"Reversed Array:"</span>)
+    printArray(arr)
+}
+    </pre>
+
+    <footer>
+        Designed and Maintained by 
+        <a href="https://linkedin.com/in/adityabhuyan" target="_blank">
+            Aditya Pratap Bhuyan
+        </a>
+    </footer>
+
+</body>
+</html>
