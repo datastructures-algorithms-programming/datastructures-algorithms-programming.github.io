@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how to implement Binary Search in Java with both iterative and recursive approaches.">
+    <title>Binary Search in Java - A Complete Tutorial</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        section {
+            margin: 30px 0;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin-top: 20px;
+            word-wrap: break-word;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Binary Search in Java: A Complete Tutorial</h1>
+    <p>Learn how to implement Binary Search with both Iterative and Recursive approaches</p>
+</header>
+
+<div class="container">
+    <section>
+        <h2>Introduction to Binary Search</h2>
+        <p>Binary Search is a fast and efficient algorithm for finding an item from a sorted list. It works by repeatedly dividing the search space in half until the target element is found or the search space is exhausted. The time complexity of Binary Search is <strong>O(log n)</strong>, making it much faster than linear search for large datasets.</p>
+    </section>
+
+    <section>
+        <h2>Algorithm Explanation</h2>
+        <p>The binary search algorithm follows these basic steps:</p>
+        <ul>
+            <li>Start with two pointers: <strong>left</strong> and <strong>right</strong>, initially pointing to the first and last index of the array.</li>
+            <li>Calculate the middle index: <strong>middle = left + (right - left) / 2</strong>.</li>
+            <li>If the middle element matches the target, return the middle index.</li>
+            <li>If the middle element is larger than the target, move the <strong>right</strong> pointer to <strong>middle - 1</strong>.</li>
+            <li>If the middle element is smaller than the target, move the <strong>left</strong> pointer to <strong>middle + 1</strong>.</li>
+            <li>Repeat until the target is found or the pointers cross.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Iterative Binary Search in Java</h2>
+        <p>Here’s an implementation of Binary Search using an iterative approach:</p>
+
+        <div class="code-block">
+            <pre>
+public class BinarySearch {
+
+    // Iterative Binary Search Method
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int middle = left + (right - left) / 2;
+
+            // Check if the target is at the middle
+            if (arr[middle] == target) {
+                return middle;  // Element found
+            }
+
+            // If the target is smaller than the middle element
+            if (arr[middle] > target) {
+                right = middle - 1;  // Search the left half
+            } else {
+                left = middle + 1;  // Search the right half
+            }
+        }
+
+        return -1;  // Element not found
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 7, 9, 11, 13, 15, 17};
+        int target = 7;
+
+        int result = binarySearch(arr, target);
+
+        if (result == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index " + result);
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <p>The <code>binarySearch</code> method works by narrowing down the search space from both ends and calculating the middle index in each iteration until it finds the target or concludes the target is absent.</p>
+    </section>
+
+    <section>
+        <h2>Recursive Binary Search in Java</h2>
+        <p>Here’s how you can implement Binary Search using recursion:</p>
+
+        <div class="code-block">
+            <pre>
+public class BinarySearch {
+
+    // Recursive Binary Search Method
+    public static int binarySearch(int[] arr, int left, int right, int target) {
+        if (left > right) {
+            return -1;  // Base case: Element not found
+        }
+
+        int middle = left + (right - left) / 2;
+
+        // Check if the target is at the middle
+        if (arr[middle] == target) {
+            return middle;  // Element found
+        }
+
+        // If the target is smaller than the middle element
+        if (arr[middle] > target) {
+            return binarySearch(arr, left, middle - 1, target);  // Search the left half
+        } else {
+            return binarySearch(arr, middle + 1, right, target);  // Search the right half
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 5, 7, 9, 11, 13, 15, 17};
+        int target = 7;
+
+        int result = binarySearch(arr, 0, arr.length - 1, target);
+
+        if (result == -1) {
+            System.out.println("Element not found");
+        } else {
+            System.out.println("Element found at index " + result);
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <p>The recursive version of Binary Search functions similarly to the iterative version. However, the search space is reduced through recursive calls rather than a loop. The <code>binarySearch</code> method is called again on either the left or right half of the array, depending on the comparison of the middle element with the target.</p>
+    </section>
+
+    <section>
+        <h2>Time Complexity of Binary Search</h2>
+        <p>The time complexity of Binary Search is <strong>O(log n)</strong>, where <strong>n</strong> is the number of elements in the array. This is because, in each step, the size of the search space is halved, making Binary Search much faster than linear search, which has a time complexity of <strong>O(n)</strong>.</p>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Binary Search Tutorial | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
