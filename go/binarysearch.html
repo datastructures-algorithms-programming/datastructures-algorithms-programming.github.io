@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search in Go - Tutorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #444;
+        }
+        pre {
+            background-color: #272822;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .step {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Binary Search in Go</h1>
+    <p>Learn how to implement Binary Search in Go</p>
+</header>
+
+<div class="container">
+    <h2>What is Binary Search?</h2>
+    <p>Binary Search is a fast search algorithm with a time complexity of O(log n). It works by dividing the search space in half with each step, narrowing down the potential location of the target element.</p>
+
+    <h2>Steps to Implement Binary Search in Go</h2>
+    <p>Follow these steps to implement a binary search algorithm in Go:</p>
+
+    <div class="step">
+        <h3>1. Set up your Go environment</h3>
+        <p>Make sure you have Go installed on your system. If not, download and install Go from the official website: <a href="https://golang.org/dl/" target="_blank">Download Go</a>.</p>
+    </div>
+
+    <div class="step">
+        <h3>2. Write the Binary Search Function</h3>
+        <p>The binary search function takes a sorted array and a target value. It compares the target with the middle element of the array and narrows down the search based on whether the target is greater or smaller than the middle element.</p>
+
+        <pre><code>package main
+
+import "fmt"
+
+// BinarySearch performs binary search on a sorted array
+func BinarySearch(arr []int, target int) int {
+    low := 0
+    high := len(arr) - 1
+
+    for low <= high {
+        mid := low + (high-low)/2 // Find middle index
+        if arr[mid] == target {
+            return mid // Target found at index mid
+        } else if arr[mid] < target {
+            low = mid + 1 // Search in the right half
+        } else {
+            high = mid - 1 // Search in the left half
+        }
+    }
+    return -1 // Target not found
+}
+
+func main() {
+    arr := []int{1, 3, 5, 7, 9, 11, 13, 15, 17, 19}
+    target := 7
+    result := BinarySearch(arr, target)
+
+    if result != -1 {
+        fmt.Printf("Element found at index %d\n", result)
+    } else {
+        fmt.Println("Element not found")
+    }
+}
+</code></pre>
+
+        <p>In the code above, we define the binary search function <strong>BinarySearch</strong> that takes a sorted array <strong>arr</strong> and a <strong>target</strong> value to find. The function returns the index of the target if it exists, or -1 if the target is not in the array.</p>
+    </div>
+
+    <div class="step">
+        <h3>3. Run the Program</h3>
+        <p>To run the program, save the code in a file with a .go extension, for example, <code>binary_search.go</code>. Open your terminal, navigate to the folder where the file is located, and run:</p>
+        <pre><code>go run binary_search.go</code></pre>
+        <p>If the target is found, the program will output the index of the target element.</p>
+    </div>
+
+    <div class="step">
+        <h3>4. Test with Different Inputs</h3>
+        <p>Try changing the value of <strong>target</strong> or the array <strong>arr</strong> to test the binary search with different inputs.</p>
+        <p>For example, if you set the target to 11, the output will be:</p>
+        <pre><code>Element found at index 5</code></pre>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Binary Search Tutorial. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
