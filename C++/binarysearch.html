@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Search in C++ Tutorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #0044cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #0044cc;
+        }
+        pre {
+            background-color: #282c34;
+            color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            overflow-x: auto;
+        }
+        code {
+            color: #f1f1f1;
+        }
+        .content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #0044cc;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Binary Search in C++ Tutorial</h1>
+    <p>Learn how to implement Binary Search algorithm in C++ with step-by-step explanation</p>
+</header>
+
+<section class="content">
+    <h2>What is Binary Search?</h2>
+    <p>
+        Binary Search is an efficient algorithm for finding an element from a sorted list of elements. 
+        It works by repeatedly dividing the search interval in half. If the value of the search key is less than the item in the middle of the interval, 
+        the search continues in the lower half, or if the value is greater, it continues in the upper half. 
+        This reduces the time complexity to <code>O(log n)</code>.
+    </p>
+</section>
+
+<section class="content">
+    <h2>Binary Search Algorithm in C++</h2>
+    <p>
+        Below is the implementation of the binary search algorithm in C++:
+    </p>
+
+    <pre>
+<code>
+#include <iostream>
+using namespace std;
+
+// Function to perform binary search
+int binarySearch(int arr[], int size, int target) {
+    int left = 0;
+    int right = size - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        // Check if target is present at mid
+        if (arr[mid] == target)
+            return mid; // Target found at index mid
+        
+        // If target is smaller, search in the left half
+        if (arr[mid] > target)
+            right = mid - 1;
+        
+        // If target is larger, search in the right half
+        else
+            left = mid + 1;
+    }
+    
+    return -1; // Target not found
+}
+
+int main() {
+    // Sample sorted array
+    int arr[] = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int target = 7;
+
+    int result = binarySearch(arr, size, target);
+    
+    if (result != -1)
+        cout << "Element found at index " << result << endl;
+    else
+        cout << "Element not found" << endl;
+
+    return 0;
+}
+</code>
+    </pre>
+</section>
+
+<section class="content">
+    <h2>Explanation of the Code</h2>
+    <p>
+        In the provided code, we define a function <code>binarySearch()</code> that takes the following arguments:
+    </p>
+    <ul>
+        <li><code>arr[]</code>: The sorted array in which we are searching for the target element.</li>
+        <li><code>size</code>: The size of the array.</li>
+        <li><code>target</code>: The element we are searching for.</li>
+    </ul>
+    <p>
+        The function uses a <code>while</code> loop to keep dividing the array into halves:
+    </p>
+    <ul>
+        <li>The middle element <code>mid</code> is calculated.</li>
+        <li>If the middle element is the target, we return the index.</li>
+        <li>If the target is smaller than the middle element, we search in the left half.</li>
+        <li>If the target is larger, we search in the right half.</li>
+    </ul>
+    <p>
+        The process continues until the target is found or the search space is exhausted.
+    </p>
+</section>
+
+<section class="content">
+    <h2>Time Complexity</h2>
+    <p>
+        The time complexity of Binary Search is <code>O(log n)</code>, where <code>n</code> is the number of elements in the array. 
+        This is much more efficient than a linear search, which has a time complexity of <code>O(n)</code>.
+    </p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Binary Search in C++ Tutorial</p>
+</footer>
+
+</body>
+</html>
